@@ -1,0 +1,15 @@
+<div class="row"  #detail>
+    <div class="col s3">
+        <div class="card red accent-4">
+            <div class="card-content white-text">
+                <span class="card-title">{{mobileRestService.selectedMobile.model}}</span>
+                <p>Price: {{mobileRestService.selectedMobile.price}} - Brand: {{mobileRestService.selectedMobile.brand}}<br/>
+                <img src="{{mobileRestService.selectedMobile.photo}}" />
+                </p>
+            </div>
+            <div class="card-action">
+                <a (click)="close()" (mouseover)="hover=true" (mouseleave)="hover=false" [ngStyle]="{cursor: hover==true ? 'pointer' : 'default'}">Fechar</a>
+            </div>
+        </div>
+    </div>
+</div>

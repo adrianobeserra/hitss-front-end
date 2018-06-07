@@ -1,0 +1,63 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <div class="mat-typography">
+    <h3>
+      Bem-vindo a {{ title }}!
+    </h3>
+  </div>
+
+  <img width="300" alt="Claro Logo" src="https://www.claro.com.br/imagem/claro_logo_novo_header-1509132207341.png">
+</div>
+<app-detail-mobile *ngIf="mobileRestService.exibirDetalhe" [mostrarDetalhe]="mostrarDetalhe" (fecharDetalhe)="unselectUsuario($event)" [mobile]="selectedMobile"></app-detail-mobile>
+<mat-table #table [dataSource]="dataSource">
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="model">
+    <mat-header-cell *matHeaderCellDef>
+      <strong>Model</strong>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let mobile"> {{mobile.model}} </mat-cell>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="price">
+    <mat-header-cell *matHeaderCellDef>
+      <strong>Price</strong>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let mobile"> {{mobile.price}} </mat-cell>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="code">
+    <mat-header-cell *matHeaderCellDef>
+      <strong>Code</strong>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let mobile"> {{mobile.code}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="photo">
+    <mat-header-cell *matHeaderCellDef>
+      <strong>Photo</strong>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let mobile">
+      <img src="{{mobile.photo}}" />
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="date">
+    <mat-header-cell *matHeaderCellDef>
+      <strong>Date</strong>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let mobile"> {{mobile.date}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="#">
+      <mat-header-cell *matHeaderCellDef>
+        <strong>#</strong>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let mobile"><a style="background-color: white;" [ngStyle]="{color: mobile.selected==true  ? 'red' : 'gray', cursor: mobile.selected==true  ? 'pointer' : 'default' }" (click)="getMobile(mobile.code)" (mouseover)="mobile.selected=true" (mouseleave)="mobile.selected=false" class="btn"><fa size="lg" name="search"></fa></a></mat-cell>
+    </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
